@@ -1,0 +1,14 @@
+version: 2
+builds:
+  - id: apex-check
+    main: isapex
+    binary: apex-check
+
+  - id: another-tool
+    main: ./cmd/another-tool
+    binary: another-tool
+
+release:
+  github:
+    owner: ducksify
+    name: panop-tools
