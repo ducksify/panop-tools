@@ -7,6 +7,13 @@ builds:
       - linux
     goarch:
       - amd64 
+  - id: test
+    main: ./test
+    binary: test
+    goos:
+      - linux
+    goarch:
+      - amd64 
 release:
   github:
     owner: ducksify
