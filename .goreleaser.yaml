@@ -3,7 +3,10 @@ builds:
   - id: isapex
     main: isapex
     binary: isapex
-
+    goos:
+      - linux
+    goarch:
+      - amd64
 release:
   github:
     owner: ducksify
