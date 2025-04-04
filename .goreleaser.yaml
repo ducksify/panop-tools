@@ -1,12 +1,8 @@
 version: 2
 builds:
-  - id: apex-check
+  - id: isapex
     main: isapex
-    binary: apex-check
-
-  - id: another-tool
-    main: ./cmd/another-tool
-    binary: another-tool
+    binary: isapex
 
 release:
   github:
