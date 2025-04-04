@@ -1,4 +1,4 @@
-module panop-svc-isapex
+module github.com/ducksify/panop-tools
 
 go 1.24
 
