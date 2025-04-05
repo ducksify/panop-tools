@@ -1,13 +1,19 @@
 version: 2
 builds:
-  - id: apex-check
-    main: isapex
-    binary: apex-check
-
-  - id: another-tool
-    main: ./cmd/another-tool
-    binary: another-tool
-
+  - id: isapex
+    main: ./isapex
+    binary: isapex
+    goos:
+      - linux
+    goarch:
+      - amd64 
+  - id: test
+    main: ./test
+    binary: test
+    goos:
+      - linux
+    goarch:
+      - amd64 
 release:
   github:
     owner: ducksify
