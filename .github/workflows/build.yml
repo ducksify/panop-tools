@@ -1,15 +1,14 @@
-name: 'goreleaser'
+name: 'Build and Test'
 
 on:
-  release:
-    types:
-      - created
-      
-permissions:
-  contents: write
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
-  goreleaser:
+  build:
     runs-on: ubuntu-latest
     steps:
       -
@@ -20,32 +19,32 @@ jobs:
       -
         name: Set up Go
         uses: actions/setup-go@v5
+        with:
+          go-version: '1.24'
       -
         name: Install UPX
         run: |
-          echo "Installing UPX for binary compression..."
           wget https://github.com/upx/upx/releases/download/v4.0.2/upx-4.0.2-amd64_linux.tar.xz
           tar -xf upx-4.0.2-amd64_linux.tar.xz
           sudo mv upx-4.0.2-amd64_linux/upx /usr/local/bin/
           rm -rf upx-4.0.2-amd64_linux*
-          upx --version
-          echo "UPX installed successfully"
       -
-        name: Run GoReleaser
+        name: Test Build with UPX
         uses: goreleaser/goreleaser-action@v6
         with:
-          # either 'goreleaser' (default) or 'goreleaser-pro'
           distribution: goreleaser
-          # 'latest', 'nightly', or a semver
           version: '~> v2'
-          args: release --clean
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          args: build --snapshot --clean
       -
-        name: Verify Compressed Binaries
+        name: Show Binary Sizes
         run: |
-          echo "Verifying compressed binaries work correctly..."
-          # Test wappalyzator binary
+          echo "=== Binary Sizes ==="
+          ls -lah dist/*/
+          echo ""
+          echo "=== Total Size ==="
+          du -sh dist/
+      -
+        name: Test wappalyzator binary
+        run: |
+          echo "Testing wappalyzator binary..."
           ./dist/wappalyzator_linux_amd64_v1/wappalyzator https://www.google.com
-          echo "✅ All binaries verified successfully"
-          
