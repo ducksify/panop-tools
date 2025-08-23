@@ -1,0 +1,12 @@
+version: 2
+updates:
+  - package-ecosystem: "gomod"
+    target-branch: "dev"
+    directory: "/"
+    registries: "*"
+    commit-message:
+      include: "scope"
+    schedule:
+      interval: "daily"
+    labels:
+      - "maintenance"
