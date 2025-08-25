@@ -6,7 +6,14 @@ A collection of lightweight, high-performance command-line tools built with Go a
 ## 🛠️ Available Tools
 
 ### 1. **wappalyzator** - Web Technology Detector
-Detects technologies used by websites using Wappalyzer fingerprinting.
+Detects technologies used by websites using Wappalyzer fingerprinting with robust HTTP handling.
+
+#### Features
+- **Smart URL handling**: Auto-adds `https://` if no protocol specified
+- **Timeout protection**: 5-second timeout to prevent hanging requests
+- **TLS skip verify**: Handles self-signed certificates and invalid SSL
+- **Redirect handling**: Follows up to 3 redirects automatically
+- **JSON output**: Clean, parseable JSON format
 
 ```bash
 # Usage
@@ -15,10 +22,17 @@ Detects technologies used by websites using Wappalyzer fingerprinting.
 # Examples
 ./wappalyzator https://www.google.com
 ./wappalyzator github.com  # Auto-adds https://
+./wappalyzator ducksify.ch # Handles 301 redirects
 
 # Output (JSON format)
 {"technology":["Google Web Server","HTTP/3"]}
 ```
+
+#### HTTP Features
+- **Timeout**: 5 seconds maximum request time
+- **TLS**: Skips certificate verification for compatibility
+- **Redirects**: Follows up to 3 redirects (prevents infinite loops)
+- **Protocol**: Auto-detects and adds HTTPS if missing
 
 ### 2. **isapex** - Domain Apex Checker
 Checks if a domain is an apex domain (Effective TLD + 1).
@@ -55,7 +69,7 @@ git clone https://github.com/ducksify/panop-tools.git
 cd panop-tools
 
 # Build with GoReleaser (includes UPX compression)
-goreleaser build --snapshot --clean
+goreleaser build --snapshot --clean --config .goreleaser.yaml
 
 # Or build manually
 go build -o wappalyzator ./wappalyzator
@@ -79,6 +93,12 @@ This project uses UPX (Ultimate Packer for eXecutables) to create highly compres
 - CGO disabled for pure Go binaries
 - UPX LZMA compression for maximum size reduction
 
+#### Runtime Optimizations
+- **Fast HTTP client**: 5-second timeout prevents hanging
+- **Efficient redirects**: Maximum 3 redirects to prevent loops
+- **TLS compatibility**: Handles various SSL certificate issues
+- **Smart URL parsing**: Auto-adds protocols when missing
+
 ### Manual Testing
 ```bash
 # Install UPX
@@ -86,7 +106,7 @@ brew install upx  # macOS
 sudo apt install upx  # Ubuntu
 
 # Build with compression
-goreleaser build --snapshot --clean
+goreleaser build --snapshot --clean --config .goreleaser.yaml
 ```
 
 ## 🔧 Development
@@ -116,6 +136,27 @@ goreleaser build --snapshot --clean
 ### Supported Platforms
 - **Linux AMD64** (primary target)
 - All binaries are statically linked and compressed
+
+### HTTP Client Configuration
+The wappalyzator uses a custom HTTP client with the following settings:
+```go
+const maxRedirects = 3
+
+client := &http.Client{
+    Timeout: 5 * time.Second,
+    Transport: &http.Transport{
+        TLSClientConfig: &tls.Config{
+            InsecureSkipVerify: true,
+        },
+    },
+    CheckRedirect: func(req *http.Request, via []*http.Request) error {
+        if len(via) >= maxRedirects {
+            return http.ErrUseLastResponse
+        }
+        return nil
+    },
+}
+```
 
 ## 🏗️ CI/CD
 

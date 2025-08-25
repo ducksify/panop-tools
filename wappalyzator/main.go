@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -8,9 +9,12 @@ import (
 	"net/http"
 	"os"
 	"strings"
+	"time"
 
 	wappalyzer "github.com/ducksify/wappalyzergo"
 )
+
+var maxRedirects = 3
 
 func main() {
 	if len(os.Args) != 2 {
@@ -26,7 +30,23 @@ func main() {
 		url = "https://" + url
 	}
 
-	resp, err := http.DefaultClient.Get(url)
+	// custom http client with timeout, insecure skip verify and max redirects
+	client := &http.Client{
+		Timeout: 5 * time.Second,
+		Transport: &http.Transport{
+			TLSClientConfig: &tls.Config{
+				InsecureSkipVerify: true,
+			},
+		},
+		CheckRedirect: func(req *http.Request, via []*http.Request) error {
+			if len(via) >= maxRedirects {
+				return http.ErrUseLastResponse
+			}
+			return nil
+		},
+	}
+
+	resp, err := client.Get(url)
 	if err != nil {
 		log.Fatal(err)
 	}
