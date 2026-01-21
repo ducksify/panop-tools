@@ -1,0 +1,975 @@
+rules:
+  # Dell EMC Networking Operating System (OS10) via login banner
+  - id: dell-emc-os10
+    match:
+      login_contains: "Dell EMC Networking Operating System (OS10)"
+    os: "Dell EMC SmartFabric OS10"
+    os_shortname: "dell-emc-os10"
+    cpe: "cpe:/o:dell:emc_networking_os10"
+
+  # Vega Session Controller
+  - id: sangoma-sbc-firmware
+    match:
+      login_contains: "Vega Session Controller"
+    os: "Sangoma Session Border Controller (SBC) Firmware"
+    os_shortname: "sangoma-sbc"
+    cpe: "cpe:/o:sangoma:session_border_controller_firmware"
+
+  # Juniper Networks Junos Space via login banner
+  - id: juniper-junos-space
+    match:
+      login_regex: "^Space release"
+    os: "Juniper Networks Junos Space"
+    os_shortname: "junos-space"
+    cpe: "cpe:/o:juniper:junos_space"
+
+  # Ubuntu specific banners (order matters)
+  - id: ubuntu-4.10
+    match:
+      contains: "SSH-2.0-OpenSSH_3.8.1p1 Debian 1:3.8.1p1-11ubuntu3"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "4.10"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-5.04
+    match:
+      contains: "SSH-2.0-OpenSSH_3.9p1 Debian-1ubuntu2"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "5.04"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-5.10
+    match:
+      contains: "SSH-2.0-OpenSSH_4.1p1 Debian-7ubuntu4"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "5.10"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-6.06
+    match:
+      contains: "SSH-2.0-OpenSSH_4.2p1 Debian-7ubuntu3"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "6.06"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-6.10
+    match:
+      contains: "SSH-2.0-OpenSSH_4.3p2 Debian-5ubuntu1"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "6.10"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-7.04
+    match:
+      contains: "SSH-2.0-OpenSSH_4.3p2 Debian-8ubuntu1"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "7.04"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-7.10
+    match:
+      contains: "SSH-2.0-OpenSSH_4.6p1 Debian-5ubuntu0"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "7.10"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-8.04
+    match:
+      contains: "SSH-2.0-OpenSSH_4.7p1 Debian-8ubuntu1"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "8.04"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-8.10
+    match:
+      contains: "SSH-2.0-OpenSSH_5.1p1 Debian-3ubuntu1"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "8.10"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-9.04
+    match:
+      contains: "SSH-2.0-OpenSSH_5.1p1 Debian-5ubuntu1"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "9.04"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-9.10
+    match:
+      contains: "SSH-2.0-OpenSSH_5.1p1 Debian-6ubuntu2"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "9.10"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-10.04
+    match:
+      regex: "SSH-2.0-OpenSSH_5.3p1 Debian-3ubuntu[3-7]"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "10.04"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-10.10
+    match:
+      regex: "SSH-2.0-OpenSSH_5.5p1 Debian-4ubuntu[3-5]"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "10.10"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-11.04
+    match:
+      contains: "SSH-2.0-OpenSSH_5.8p1 Debian-1ubuntu3"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "11.04"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-11.10
+    match:
+      contains: "SSH-2.0-OpenSSH_5.8p1 Debian-7ubuntu1"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "11.10"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-12.04
+    match:
+      contains: "SSH-2.0-OpenSSH_5.9p1 Debian-5ubuntu"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "12.04"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-12.10
+    match:
+      contains: "SSH-2.0-OpenSSH_6.0p1 Debian-3ubuntu"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "12.10"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-13.04
+    match:
+      contains: "SSH-2.0-OpenSSH_6.1p1 Debian-3ubuntu"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "13.04"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-13.10
+    match:
+      contains: "SSH-2.0-OpenSSH_6.2p2 Ubuntu-6"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "13.10"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-14.04
+    match:
+      regex: "SSH-2.0-OpenSSH_6.6(\\.1)?p1 Ubuntu-2"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "14.04"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-14.10
+    match:
+      contains: "SSH-2.0-OpenSSH_6.6.1p1 Ubuntu-8"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "14.10"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-15.04
+    match:
+      contains: "SSH-2.0-OpenSSH_6.7p1 Ubuntu-5ubuntu1"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "15.04"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-15.10
+    match:
+      contains: "SSH-2.0-OpenSSH_6.9p1 Ubuntu-2"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "15.10"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-16.04
+    match:
+      contains: "SSH-2.0-OpenSSH_7.2p2 Ubuntu-4"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "16.04"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-16.10
+    match:
+      contains: "SSH-2.0-OpenSSH_7.3p1 Ubuntu-1"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "16.10"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-17.04
+    match:
+      contains: "SSH-2.0-OpenSSH_7.4p1 Ubuntu-10"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "17.04"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-17.10
+    match:
+      contains: "SSH-2.0-OpenSSH_7.5p1 Ubuntu-10"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "17.10"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-18.04
+    match:
+      contains: "SSH-2.0-OpenSSH_7.6p1 Ubuntu-4"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "18.04"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-18.10
+    match:
+      contains: "SSH-2.0-OpenSSH_7.7p1 Ubuntu-4"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "18.10"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-19.04
+    match:
+      contains: "SSH-2.0-OpenSSH_7.9p1 Ubuntu-10"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "19.04"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-19.10
+    match:
+      contains: "SSH-2.0-OpenSSH_8.0p1 Ubuntu-6"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "19.10"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-20.04
+    match:
+      contains: "SSH-2.0-OpenSSH_8.2p1 Ubuntu-4"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "20.04"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-20.10
+    match:
+      contains: "SSH-2.0-OpenSSH_8.3p1 Ubuntu-1"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "20.10"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-21.04
+    match:
+      contains: "SSH-2.0-OpenSSH_8.4p1 Ubuntu-5ubuntu1"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "21.04"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-21.10
+    match:
+      contains: "SSH-2.0-OpenSSH_8.4p1 Ubuntu-6ubuntu2"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "21.10"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-22.04
+    match:
+      contains: "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "22.04"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-22.10
+    match:
+      contains: "SSH-2.0-OpenSSH_9.0p1 Ubuntu-1ubuntu7"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "22.10"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-23.04
+    match:
+      contains: "SSH-2.0-OpenSSH_9.0p1 Ubuntu-1ubuntu8"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "23.04"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-23.10
+    match:
+      contains: "SSH-2.0-OpenSSH_9.3p1 Ubuntu-1ubuntu3.3"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "23.10"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-24.04
+    match:
+      contains: "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "24.04"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-generic
+    match:
+      regex: "(?i)ubuntu"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  # Debian / Raspbian
+  - id: ubuntu-7.10-special
+    match:
+      contains: "SSH-2.0-OpenSSH_4.6p1 Debian-5build1"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "7.10"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: ubuntu-13.04-special
+    match:
+      contains: "SSH-2.0-OpenSSH_6.1p1 Debian-4"
+    os: "Ubuntu"
+    os_shortname: "ubuntu"
+    version: "13.04"
+    cpe: "cpe:/o:canonical:ubuntu_linux"
+
+  - id: debian-3.0
+    match:
+      contains: "SSH-2.0-OpenSSH_3.4p1 Debian 1"
+    os: "Debian GNU/Linux"
+    os_shortname: "debian"
+    version: "3.0"
+    cpe: "cpe:/o:debian:debian_linux"
+
+  - id: debian-3.1
+    match:
+      contains: "SSH-2.0-OpenSSH_3.8.1p1 Debian-8"
+    os: "Debian GNU/Linux"
+    os_shortname: "debian"
+    version: "3.1"
+    cpe: "cpe:/o:debian:debian_linux"
+
+  - id: debian-4.0
+    match:
+      contains: "SSH-2.0-OpenSSH_4.3p2 Debian-9"
+    os: "Debian GNU/Linux"
+    os_shortname: "debian"
+    version: "4.0"
+    cpe: "cpe:/o:debian:debian_linux"
+
+  - id: debian-5.0
+    match:
+      contains: "SSH-2.0-OpenSSH_5.1p1 Debian"
+    os: "Debian GNU/Linux"
+    os_shortname: "debian"
+    version: "5.0"
+    cpe: "cpe:/o:debian:debian_linux"
+
+  - id: debian-6.0
+    match:
+      contains: "SSH-2.0-OpenSSH_5.5p1 Debian-6"
+    os: "Debian GNU/Linux"
+    os_shortname: "debian"
+    version: "6.0"
+    cpe: "cpe:/o:debian:debian_linux"
+
+  - id: debian-7
+    match:
+      regex: "SSH-2.0-OpenSSH_6.0p1 Debian-4|~bpo7"
+    os: "Debian GNU/Linux"
+    os_shortname: "debian"
+    version: "7"
+    cpe: "cpe:/o:debian:debian_linux"
+
+  - id: debian-8
+    match:
+      regex: "SSH-2.0-OpenSSH_6.7p1 (Debian-5|Raspbian-5)|~bpo8"
+    os: "Debian GNU/Linux"
+    os_shortname: "debian"
+    version: "8"
+    cpe: "cpe:/o:debian:debian_linux"
+
+  - id: debian-9
+    match:
+      regex: "SSH-2.0-OpenSSH_7.4p1 (Debian-10|Raspbian-10)|~bpo9"
+    os: "Debian GNU/Linux"
+    os_shortname: "debian"
+    version: "9"
+    cpe: "cpe:/o:debian:debian_linux"
+
+  - id: debian-10
+    match:
+      regex: "SSH-2.0-OpenSSH_7.9p1 (Debian-10|Raspbian-10)|~bpo10"
+    os: "Debian GNU/Linux"
+    os_shortname: "debian"
+    version: "10"
+    cpe: "cpe:/o:debian:debian_linux"
+
+  - id: debian-11
+    match:
+      regex: "SSH-2.0-OpenSSH_8.4p1 (Debian-5|Raspbian-5)|~bpo11"
+    os: "Debian GNU/Linux"
+    os_shortname: "debian"
+    version: "11"
+    cpe: "cpe:/o:debian:debian_linux"
+
+  - id: debian-12
+    match:
+      regex: "SSH-2.0-OpenSSH_9.2p1 Debian-2|~bpo12"
+    os: "Debian GNU/Linux"
+    os_shortname: "debian"
+    version: "12"
+    cpe: "cpe:/o:debian:debian_linux"
+
+  - id: debian-13
+    match:
+      regex: "SSH-2.0-OpenSSH_10.0p2 Debian-7|~bpo13"
+    os: "Debian GNU/Linux"
+    os_shortname: "debian"
+    version: "13"
+    cpe: "cpe:/o:debian:debian_linux"
+
+  - id: debian-generic
+    match:
+      regex: "Debian|Raspbian"
+    os: "Debian GNU/Linux"
+    os_shortname: "debian"
+    cpe: "cpe:/o:debian:debian_linux"
+
+  # FreeBSD (order preserved)
+  - id: freebsd-4.3
+    match:
+      contains: "SSH-1.99-OpenSSH_2.3.0 green@FreeBSD.org 20010321"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "4.3"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-4.4
+    match:
+      contains: "SSH-1.99-OpenSSH_2.3.0 FreeBSD localisations 20010713"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "4.4"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-4.5
+    match:
+      contains: "SSH-1.99-OpenSSH_2.9 FreeBSD localisations 20011202"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "4.5"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-4.6
+    match:
+      contains: "SSH-1.99-OpenSSH_2.9 FreeBSD localisations 20020307"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "4.6"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-4.7
+    match:
+      contains: "SSH-1.99-OpenSSH_3.4p1 FreeBSD-20020702"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "4.7"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-4.8
+    match:
+      contains: "SSH-1.99-OpenSSH_3.5p1 FreeBSD-20030201"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "4.8"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-4.11
+    match:
+      regex: "SSH-1.99-OpenSSH_3.5p1 FreeBSD-(20030924|20060930)"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "4.11"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-5.0
+    match:
+      contains: "SSH-1.99-OpenSSH_3.5p1 FreeBSD-20021029"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "5.0"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-5.1
+    match:
+      contains: "SSH-1.99-OpenSSH_3.6.1p1 FreeBSD-20030423"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "5.1"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-5.2
+    match:
+      contains: "SSH-1.99-OpenSSH_3.6.1p1 FreeBSD-20030924"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "5.2"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-5.4
+    match:
+      contains: "SSH-2.0-OpenSSH_3.8.1p1 FreeBSD-20040419"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "5.4"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-5.5
+    match:
+      contains: "SSH-2.0-OpenSSH_3.8.1p1 FreeBSD-20060123"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "5.5"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-6.1
+    match:
+      contains: "SSH-2.0-OpenSSH_4.2p1 FreeBSD-20050903"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "6.1"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-7.0
+    match:
+      contains: "SSH-2.0-OpenSSH_4.5p1 FreeBSD-20061110"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "7.0"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-7.4
+    match:
+      contains: "SSH-2.0-OpenSSH_5.1p1 FreeBSD-20080901"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "7.4"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-8.0
+    match:
+      contains: "SSH-2.0-OpenSSH_5.2p1 FreeBSD-20090522"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "8.0"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-8.2
+    match:
+      contains: "SSH-2.0-OpenSSH_5.4p1 FreeBSD-20100308"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "8.2"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-8.3
+    match:
+      contains: "SSH-2.0-OpenSSH_5.4p1_hpn13v11 FreeBSD-20100308"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "8.3"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-8.4
+    match:
+      contains: "SSH-2.0-OpenSSH_6.1_hpn13v11 FreeBSD-20120901"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "8.4"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-9.1
+    match:
+      contains: "SSH-2.0-OpenSSH_5.8p2_hpn13v11 FreeBSD-20110503"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "9.1"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-9.2
+    match:
+      contains: "SSH-2.0-OpenSSH_6.2_hpn13v11 FreeBSD-20130515"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "9.2"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-10.0
+    match:
+      contains: "SSH-2.0-OpenSSH_6.4_hpn13v11 FreeBSD-20131111"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "10.0"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-10.2
+    match:
+      contains: "SSH-2.0-OpenSSH_6.6.1_hpn13v11 FreeBSD-20140420"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "10.2"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-10.4
+    match:
+      contains: "SSH-2.0-OpenSSH_7.3 FreeBSD-20170902"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "10.4"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-11.0
+    match:
+      contains: "SSH-2.0-OpenSSH_7.2 FreeBSD-20160310"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "11.0"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-11.1
+    match:
+      contains: "SSH-2.0-OpenSSH_7.2 FreeBSD-20161230"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "11.1"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-11.4
+    match:
+      contains: "SSH-2.0-OpenSSH_7.5 FreeBSD-20170903"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "11.4"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-12.1
+    match:
+      contains: "SSH-2.0-OpenSSH_7.8 FreeBSD-20180909"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "12.1"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-13.0
+    match:
+      contains: "SSH-2.0-OpenSSH_7.9 FreeBSD-20200214"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "13.0"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-13.1
+    match:
+      contains: "SSH-2.0-OpenSSH_8.8 FreeBSD-20211221"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    version: "13.1"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  - id: freebsd-generic
+    match:
+      contains: "FreeBSD"
+    os: "FreeBSD"
+    os_shortname: "freebsd"
+    cpe: "cpe:/o:freebsd:freebsd"
+
+  # OpenBSD / NetBSD
+  - id: openbsd-generic
+    match:
+      contains: "OpenBSD"
+    os: "OpenBSD"
+    os_shortname: "openbsd"
+    cpe: "cpe:/o:openbsd:openbsd"
+
+  - id: netbsd-generic
+    match:
+      contains: "NetBSD"
+    os: "NetBSD"
+    os_shortname: "netbsd"
+    cpe: "cpe:/o:netbsd:netbsd"
+
+  # Cisco WLC
+  - id: cisco-wlc
+    match:
+      contains: "CISCO_WLC"
+    os: "Cisco Wireless LAN Controller Firmware"
+    os_shortname: "cisco-wlc"
+    cpe: "cpe:/o:cisco:wireless_lan_controller"
+
+  # Cisco IOS
+  - id: cisco-ios
+    match:
+      regex: "^SSH-[0-9.]+-Cisco-[0-9.]+"
+    os: "Cisco IOS"
+    os_shortname: "cisco-ios"
+    cpe: "cpe:/o:cisco:ios"
+
+  # Generic Cisco (banner or login)
+  - id: cisco-generic
+    match:
+      regex: "(?i)(cisco|FIPS User Access Verification)"
+    os: "Cisco"
+    os_shortname: "cisco"
+    cpe: "cpe:/o:cisco"
+
+  # SunOS
+  - id: sunos
+    match:
+      regex: "SSH-[0-9.]+-Sun_SSH"
+    os: "SunOS"
+    os_shortname: "sunos"
+    cpe: "cpe:/o:sun:sunos"
+
+  # NetScreen ScreenOS
+  - id: netscreen-screenos
+    match:
+      contains: "SSH-2.0-NetScreen"
+    os: "NetScreen ScreenOS"
+    os_shortname: "netscreen-screenos"
+    cpe: "cpe:/o:juniper:netscreen_screenos"
+
+  # FortiOS
+  - id: fortios
+    match:
+      regex: "SSH-2.0-xxxxxxx|FortiSSH"
+    os: "FortiOS"
+    os_shortname: "fortios"
+    cpe: "cpe:/o:fortinet:fortios"
+
+  # OpenVMS
+  - id: openvms
+    match:
+      contains: "OpenVMS"
+    os: "OpenVMS"
+    os_shortname: "openvms"
+    cpe: "cpe:/o:hp:openvms"
+
+  # Microsoft Windows (embedded MS SSH)
+  - id: windows-ms-ssh
+    match:
+      contains: "SSH-2.0-MS_"
+    os: "Microsoft Windows"
+    os_shortname: "windows"
+    cpe: "cpe:/o:microsoft:windows_10:-:-:iot"
+
+  # Microsoft Windows (WeOnlyDo / freeSSHd)
+  - id: windows-weonlydo
+    match:
+      contains: "SSH-2.0-WeOnlyDo"
+    os: "Microsoft Windows"
+    os_shortname: "windows"
+    cpe: "cpe:/o:microsoft:windows"
+
+  # HP iLO
+  - id: hp-ilo
+    match:
+      contains: "SSH-2.0-mpSSH_"
+    os: "HP iLO"
+    os_shortname: "hp-ilo"
+    cpe: "cpe:/o:hp:integrated_lights-out"
+
+  # NetApp Data ONTAP (exact banner)
+  - id: netapp-ontap-banner
+    match:
+      contains: "SSH-2.0-Data ONTAP SSH"
+    os: "NetApp Data ONTAP"
+    os_shortname: "netapp-ontap"
+    cpe: "cpe:/o:netapp:data_ontap"
+
+  # NetApp Data ONTAP (other banners)
+  - id: netapp-ontap-generic
+    match:
+      regex: "SSH.+Data ONTAP SSH"
+    os: "NetApp Data ONTAP"
+    os_shortname: "netapp-ontap"
+    cpe: "cpe:/o:netapp:data_ontap"
+
+  # Embedded Linux (Moxa)
+  - id: linux-moxa
+    match:
+      contains: "SSH-2.0-moxa_"
+    os: "Linux/Unix"
+    os_shortname: "linux"
+    cpe: "cpe:/o:linux:kernel"
+
+  # SolarWinds Network Configuration Manager (Windows only)
+  - id: windows-solarwinds-ncm
+    match:
+      contains: "Network ConfigManager SCP Server"
+    os: "Microsoft Windows"
+    os_shortname: "windows"
+    cpe: "cpe:/o:microsoft:windows"
+
+  # OpenSSH for Windows
+  - id: windows-openssh
+    match:
+      contains: "OpenSSH_for_Windows"
+    os: "Microsoft Windows"
+    os_shortname: "windows"
+    cpe: "cpe:/o:microsoft:windows"
+
+  # Zyxel USG Firmware
+  - id: zyxel-usg
+    match:
+      regex: "SSH.+-Zyxel SSH server"
+    os: "Zyxel USG Firmware"
+    os_shortname: "zyxel-usg"
+    cpe: "cpe:/o:zyxel:usg_firmware"
+
+  # WS_FTP Server SSH (Windows)
+  - id: windows-ws-ftp
+    match:
+      regex: "SSH.+-WS_FTP-SSH"
+    os: "Microsoft Windows"
+    os_shortname: "windows"
+    cpe: "cpe:/o:microsoft:windows"
+
+  # Cisco NX-OS (login banner)
+  - id: cisco-nx-os
+    match:
+      login_regex: "Nexus [0-9]+ Switch"
+    os: "Cisco NX-OS"
+    os_shortname: "cisco-nx-os"
+    cpe: "cpe:/o:cisco:nx-os"
+
+  # ArrayOS
+  - id: array-arrayos
+    match:
+      regex: "SSH-.+ArrayOS"
+    os: "Array ArrayOS"
+    os_shortname: "arrayos"
+    cpe: "cpe:/o:arraynetworks:arrayos"
+
+  # Greenbone OS
+  - id: greenbone-os
+    match:
+      regex: "SSH.+Greenbone OS"
+    os: "Greenbone OS (GOS)"
+    os_shortname: "greenbone-os"
+    cpe: "cpe:/o:greenbone:greenbone_os"
+
+  # Huawei VRP firmware
+  - id: huawei-vrp
+    match:
+      regex: "SSH-2.0--|SSH-2.0-HUAWEI-|SSH-1.99--"
+    os: "Huawei Unknown Model Versatile Routing Platform (VRP) network device Firmware"
+    os_shortname: "huawei-vrp"
+    cpe: "cpe:/o:huawei:vrp_firmware"
+
+  # Embedded Linux/Unix NOS-SSH
+  - id: linux-nos-ssh
+    match:
+      contains: "SSH-2.0-NOS-SSH"
+    os: "Linux/Unix"
+    os_shortname: "linux"
+    cpe: "cpe:/o:linux:kernel"
+
+  # Bitvise / WinSSHD
+  - id: windows-wins
+    match:
+      contains: "WinSSHD"
+    os: "Microsoft Windows"
+    os_shortname: "windows"
+    cpe: "cpe:/o:microsoft:windows"
+
+  # Crestron Device Firmware
+  - id: crestron-device-firmware
+    match:
+      contains: "SSH-2.0-CrestronSSH"
+    os: "Crestron Device Firmware"
+    os_shortname: "crestron-device"
+    cpe: "cpe:/o:crestron:device_firmware"
+
+  # Red Hat Enterprise Linux (via OpenSSL -rhel)
+  - id: rhel-with-version
+    match:
+      regex: "OpenSSL.+-rhel([0-9]+)"
+    os: "Red Hat Enterprise Linux"
+    os_shortname: "rhel"
+    cpe: "cpe:/o:redhat:enterprise_linux"
+
+  - id: rhel-generic
+    match:
+      contains: "-rhel"
+    os: "Red Hat Enterprise Linux"
+    os_shortname: "rhel"
+    cpe: "cpe:/o:redhat:enterprise_linux"
+
+  # MOVEit Transfer SFTP (Windows)
+  - id: windows-moveit
+    match:
+      regex: "SSH-.+-MOVEit Transfer SFTP"
+    os: "Microsoft Windows"
+    os_shortname: "windows"
+    cpe: "cpe:/o:microsoft:windows"
+
+  # Globalscape (Windows)
+  - id: windows-globalscape
+    match:
+      regex: "SSH-.+ Globalscape"
+    os: "Microsoft Windows"
+    os_shortname: "windows"
+    cpe: "cpe:/o:microsoft:windows"
+
+  # Schneider Electric Easergy P-series
+  - id: schneider-easergy
+    match:
+      regex: "SSH-.+ Easergy-P[0-9]"
+    os: "Schneider Electric PowerLogic Protection Firmware"
+    os_shortname: "schneider-easergy"
+    cpe: "cpe:/o:schneider-electric:easergy_protection_firmware"
+
+  # AudioCodes Mediant Firmware
+  - id: audiocodes-mediant
+    match:
+      regex: "SSH-.+AudioCodes"
+    os: "AudioCodes Mediant Firmware"
+    os_shortname: "audiocodes-mediant"
+    cpe: "cpe:/o:audiocodes:mediant_firmware"
+

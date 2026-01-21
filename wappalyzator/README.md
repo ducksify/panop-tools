@@ -1,43 +1,43 @@
-# WappalyzerGo
+## wappalyzator
 
-A simple Go application that uses the Wappalyzer library to detect technologies used by websites.
+A small CLI that detects technologies used by a website using Wappalyzer fingerprints.
 
-## Features
+### Features
 
-- Detects web technologies, frameworks, and services used by websites
-- Uses the official Wappalyzer Go library
-- Simple and easy to use
+- HTTP(S) client with 5s timeout
+- Follows up to 3 redirects
+- Skips TLS certificate verification
+- Auto-adds `https://` if no scheme is provided
+- Prints a simple JSON object listing detected technologies
 
-## Installation
+### Installation
 
-1. Clone this repository
-2. Install dependencies:
-   ```bash
-   go mod tidy
-   ```
-
-## Usage
-
-Run the application:
 ```bash
-go run main.go
+go build -o wappalyzator ./wappalyzator
 ```
 
-The application will:
-1. Fetch the website `https://www.hackerone.com`
-2. Analyze the response headers and body
-3. Print detected technologies
+### Usage
 
-## Example Output
-
-```
-map[Cloudflare:{} Drupal:{} Fastly:{} Google Tag Manager:{} HSTS:{} MariaDB:{} Nginx:{} PHP:{} Pantheon:{} Varnish:{}]
+```bash
+./wappalyzator https://www.example.com
+./wappalyzator github.com
 ```
 
-## Dependencies
+The second example automatically prepends `https://`.
 
-- `github.com/projectdiscovery/wappalyzergo` - Wappalyzer Go library for technology detection
+### Output
 
-## License
+The tool prints JSON to stdout:
 
-This project is open source and available under the MIT License.
+```json
+{
+  "technology": [
+    "Nginx",
+    "HTTP/3"
+  ]
+}
+```
+
+### Dependencies
+
+- `github.com/ducksify/wappalyzergo`: Wappalyzer fingerprints and detection logic
