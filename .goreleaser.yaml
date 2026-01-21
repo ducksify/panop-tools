@@ -68,6 +68,23 @@ builds:
     hooks:
       post:
         - cmd: upx --best --lzma {{ .Path }}
+  - id: eol-checker
+    main: ./eol-checker
+    binary: eol-checker
+    goos:
+      - linux
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w
+      - -X main.version={{.Version}}
+      - -extldflags=-static
+    env:
+      - CGO_ENABLED=0
+    hooks:
+      post:
+        - cmd: upx --best --lzma {{ .Path }}
 release:
   github:
     owner: ducksify

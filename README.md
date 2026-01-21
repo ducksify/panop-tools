@@ -9,6 +9,7 @@ A collection of small CLI tools.
 | wappalyzator | Detects web technologies using Wappalyzer | `wappalyzator` | [wappalyzator](./wappalyzator/README.md) |
 | isapex       | Checks if a domain is an apex (eTLD+1)    | `isapex`      | [isapex](./isapex/README.md)             |
 | sshosizator  | Detects OS from SSH banners               | `sshosizator` | [sshosizator](./sshosizator/README.md)   |
+| eol-checker  | Checks product EOL status via endoflife.date API | `eol-checker` | [eol-checker](./eol-checker/README.md) |
 | test         | Simple development test binary            | `test`        | [test](./test/README.md)                 |
 
 ## Installation
