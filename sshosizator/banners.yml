@@ -471,6 +471,56 @@ rules:
     os_shortname: "debian"
     cpe: "cpe:/o:debian:debian_linux"
 
+  # Red Hat Enterprise Linux
+  - id: rhel-5
+    match:
+      regex: "SSH-2.0-OpenSSH_4.3"
+    os: "Red Hat Enterprise Linux"
+    os_shortname: "rhel"
+    version: "5"
+    cpe: "cpe:/o:redhat:enterprise_linux"
+
+  - id: rhel-7
+    match:
+      regex: "SSH-2.0-OpenSSH_7.4"
+    os: "Red Hat Enterprise Linux"
+    os_shortname: "rhel"
+    version: "7"
+    cpe: "cpe:/o:redhat:enterprise_linux"
+
+  - id: rhel-8
+    match:
+      regex: "SSH-2.0-OpenSSH_8.0"
+    os: "Red Hat Enterprise Linux"
+    os_shortname: "rhel"
+    version: "8"
+    cpe: "cpe:/o:redhat:enterprise_linux"
+
+  - id: rhel-9
+    match:
+      regex: "SSH-2.0-OpenSSH_8.7"
+    os: "Red Hat Enterprise Linux"
+    os_shortname: "rhel"
+    version: "9"
+    cpe: "cpe:/o:redhat:enterprise_linux"
+
+  - id: rhel-10
+    match:
+      regex: "SSH-2.0-OpenSSH_9.9"
+    os: "Red Hat Enterprise Linux"
+    os_shortname: "rhel"
+    version: "10"
+    cpe: "cpe:/o:redhat:enterprise_linux"
+
+  # SLES
+  - id: sles-11
+    match:
+      regex: "SSH-2.0-OpenSSH_9.6"
+    os: "SUSE Linux Enterprise Server"
+    os_shortname: "sles"
+    version: "11"
+    cpe: "cpe:/o:suse:sles"
+
   # FreeBSD (order preserved)
   - id: freebsd-4.3
     match:
