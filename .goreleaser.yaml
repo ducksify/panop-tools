@@ -85,6 +85,23 @@ builds:
     hooks:
       post:
         - cmd: upx --best --lzma {{ .Path }}
+  - id: jsaudit
+    main: ./jsaudit
+    binary: jsaudit
+    goos:
+      - linux
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w
+      - -X main.version={{.Version}}
+      - -extldflags=-static
+    env:
+      - CGO_ENABLED=0
+    hooks:
+      post:
+        - cmd: upx --best --lzma {{ .Path }}
 release:
   github:
     owner: ducksify
