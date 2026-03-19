@@ -6,6 +6,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"strings"
 	"time"
 )
 
@@ -26,11 +27,30 @@ func newHTTPClient(timeout time.Duration, log *logger) *httpClient {
 
 	return &httpClient{
 		client: &http.Client{
-			Timeout:   timeout,
-			Transport: transport,
+			Timeout:       timeout,
+			Transport:     transport,
+			CheckRedirect: sameDomainRedirectOnly,
 		},
 		log: log,
 	}
+}
+
+func sameDomainRedirectOnly(req *http.Request, via []*http.Request) error {
+	if len(via) == 0 {
+		return nil
+	}
+
+	prev := via[len(via)-1]
+	if !sameHostname(prev.URL, req.URL) {
+		// Keep the redirect response and stop following when host changes.
+		return http.ErrUseLastResponse
+	}
+
+	return nil
+}
+
+func sameHostname(a, b *url.URL) bool {
+	return strings.EqualFold(a.Hostname(), b.Hostname())
 }
 
 func (c *httpClient) setRetry(n int) {

@@ -48,12 +48,12 @@ type summary struct {
 }
 
 type report struct {
-	Scanner        string                 `json:"scanner"`
-	Version        string                 `json:"version"`
-	Target         string                 `json:"target"`
-	Date           string                 `json:"date"`
-	Summary        summary                `json:"summary"`
-	Scripts        []scriptEntry          `json:"scripts"`
+	Scanner         string                 `json:"scanner"`
+	Version         string                 `json:"version"`
+	Target          string                 `json:"target"`
+	Date            string                 `json:"date"`
+	Summary         summary                `json:"summary"`
+	Scripts         []scriptEntry          `json:"scripts"`
 	Vulnerabilities []vulnerabilityFinding `json:"vulnerabilities"`
 }
 
@@ -165,47 +165,102 @@ func runScan(opts cliOptions, client *httpClient, db *db, log *logger) (*report,
 }
 
 func extractScriptURLs(html string, baseURL string) []string {
-	re := regexp.MustCompile(`(?i)<script[^>]+src=["']([^"']+)["'][^>]*>`)
-	matches := re.FindAllStringSubmatch(html, -1)
-	if len(matches) == 0 {
-		return nil
-	}
-
 	base, err := url.Parse(baseURL)
 	if err != nil {
 		return nil
 	}
 
+	scriptTagRe := regexp.MustCompile(`(?is)<script\b[^>]*\bsrc=["']([^"']+)["'][^>]*>`)
+	linkTagRe := regexp.MustCompile(`(?is)<link\b([^>]*)>`)
+	attrRe := regexp.MustCompile(`(?is)\b([a-zA-Z_:][\w:.-]*)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>` + "`" + `]+))`)
+
 	seen := make(map[string]struct{})
 	var urls []string
 
-	for _, m := range matches {
+	for _, m := range scriptTagRe.FindAllStringSubmatch(html, -1) {
 		if len(m) < 2 {
 			continue
 		}
-		src := strings.TrimSpace(m[1])
-		if src == "" {
+
+		addResolvedURL(strings.TrimSpace(m[1]), base, seen, &urls)
+	}
+
+	for _, m := range linkTagRe.FindAllStringSubmatch(html, -1) {
+		if len(m) < 2 {
 			continue
 		}
 
-		u, err := url.Parse(src)
-		if err != nil {
+		attrs := m[1]
+		rel := ""
+		as := ""
+		href := ""
+
+		for _, am := range attrRe.FindAllStringSubmatch(attrs, -1) {
+			if len(am) < 5 {
+				continue
+			}
+
+			val := am[2]
+			if val == "" {
+				val = am[3]
+			}
+			if val == "" {
+				val = am[4]
+			}
+
+			switch strings.ToLower(am[1]) {
+			case "rel":
+				rel = strings.ToLower(strings.TrimSpace(val))
+			case "as":
+				as = strings.ToLower(strings.TrimSpace(val))
+			case "href":
+				href = strings.TrimSpace(val)
+			}
+		}
+
+		if href == "" {
 			continue
 		}
 
-		if !u.IsAbs() {
-			u = base.ResolveReference(u)
-		}
-
-		final := u.String()
-		if _, ok := seen[final]; ok {
+		// Include JS files hinted via module/preload links.
+		if !(hasRelToken(rel, "modulepreload") || (hasRelToken(rel, "preload") && as == "script")) {
 			continue
 		}
-		seen[final] = struct{}{}
-		urls = append(urls, final)
+
+		addResolvedURL(href, base, seen, &urls)
 	}
 
 	return urls
+}
+
+func hasRelToken(rel, token string) bool {
+	for _, part := range strings.Fields(strings.ToLower(rel)) {
+		if part == token {
+			return true
+		}
+	}
+	return false
+}
+
+func addResolvedURL(raw string, base *url.URL, seen map[string]struct{}, urls *[]string) {
+	if raw == "" {
+		return
+	}
+
+	u, err := url.Parse(raw)
+	if err != nil {
+		return
+	}
+	if !u.IsAbs() {
+		u = base.ResolveReference(u)
+	}
+
+	final := u.String()
+	if _, ok := seen[final]; ok {
+		return
+	}
+	seen[final] = struct{}{}
+	*urls = append(*urls, final)
 }
 
 func detectLibraries(scriptURL, content string, db *db, log *logger) []scriptLibrary {
@@ -363,4 +418,3 @@ func extractHeaderVersion(content string) string {
 	}
 	return ""
 }
-
