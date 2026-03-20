@@ -265,10 +265,11 @@ func addResolvedURL(raw string, base *url.URL, seen map[string]struct{}, urls *[
 
 func detectLibraries(scriptURL, content string, db *db, log *logger) []scriptLibrary {
 	found := make(map[string]string) // lib -> version
+	versionCapture := `(\d+[\d.]*)`
 
 	for lib, patterns := range db.URLPatterns {
 		for _, pat := range patterns {
-			reStr := strings.ReplaceAll(pat, "§§version§§", `(\\d+[\\d.]*)`)
+			reStr := strings.ReplaceAll(pat, "§§version§§", versionCapture)
 			re, err := regexp.Compile("(?i)" + reStr)
 			if err != nil {
 				continue
@@ -282,7 +283,7 @@ func detectLibraries(scriptURL, content string, db *db, log *logger) []scriptLib
 
 	for lib, patterns := range db.ContentRegex {
 		for _, pat := range patterns {
-			reStr := strings.ReplaceAll(pat, "§§version§§", `(\\d+[\\d.]*)`)
+			reStr := strings.ReplaceAll(pat, "§§version§§", versionCapture)
 			re, err := regexp.Compile("(?i)" + reStr)
 			if err != nil {
 				continue

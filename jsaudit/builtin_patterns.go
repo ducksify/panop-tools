@@ -61,7 +61,7 @@ var builtinContentPatterns = map[string][]string{
 	// jQuery — patterns are intentionally strict to avoid false positives in plugins
 	"jquery": {
 		`jQuery JavaScript Library v(\d+\.\d+[\d.]*)`,
-		`\\* jQuery v(\d+\.\d+[\d.]*) \|`,
+		`\\* jQuery v(\d+\.\d+[\d.]*)(?:-[\w.-]+)? \|`,
 		`\\{version:"(\d+\.\d+[\d.]*)",fn:`,
 	},
 	// jQuery UI
