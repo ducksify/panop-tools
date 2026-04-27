@@ -102,6 +102,22 @@ builds:
     hooks:
       post:
         - cmd: upx --best --lzma {{ .Path }}
+  - id: dkimizator
+    main: ./dkimizator
+    binary: dkimizator
+    goos:
+      - linux
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w
+      - -extldflags=-static
+    env:
+      - CGO_ENABLED=0
+    hooks:
+      post:
+        - cmd: upx --best --lzma {{ .Path }}
 release:
   github:
     owner: ducksify
