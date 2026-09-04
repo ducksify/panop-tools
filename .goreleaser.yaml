@@ -5,119 +5,161 @@ builds:
     binary: isapex
     goos:
       - linux
+      - darwin
     goarch:
       - amd64
       - arm64
+    ignore:
+      - goos: linux
+        goarch: arm64
+      - goos: darwin
+        goarch: amd64
     ldflags:
       - -s -w
       - -X main.version={{.Version}}
-      - -extldflags=-static
+      - '{{ if eq .Os "linux" }}-extldflags=-static{{ end }}'
     env:
       - CGO_ENABLED=0
     hooks:
       post:
-        - cmd: upx --best --lzma {{ .Path }}
+        - cmd: '{{ if eq .Os "linux" }}upx --best --lzma {{ .Path }}{{ else }}true{{ end }}'
   - id: wappalyzator
     main: ./wappalyzator
     binary: wappalyzator
     goos:
       - linux
+      - darwin
     goarch:
       - amd64
       - arm64
+    ignore:
+      - goos: linux
+        goarch: arm64
+      - goos: darwin
+        goarch: amd64
     ldflags:
       - -s -w
       - -X main.version={{.Version}}
-      - -extldflags=-static
+      - '{{ if eq .Os "linux" }}-extldflags=-static{{ end }}'
     env:
       - CGO_ENABLED=0
     hooks:
       post:
-        - cmd: upx --best --lzma {{ .Path }}
+        - cmd: '{{ if eq .Os "linux" }}upx --best --lzma {{ .Path }}{{ else }}true{{ end }}'
   - id: test
     main: ./test
     binary: test
     goos:
       - linux
+      - darwin
     goarch:
       - amd64
       - arm64
+    ignore:
+      - goos: linux
+        goarch: arm64
+      - goos: darwin
+        goarch: amd64
     ldflags:
       - -s -w
       - -X main.version={{.Version}}
-      - -extldflags=-static
+      - '{{ if eq .Os "linux" }}-extldflags=-static{{ end }}'
     env:
       - CGO_ENABLED=0
     hooks:
       post:
-        - cmd: upx --best --lzma {{ .Path }}
+        - cmd: '{{ if eq .Os "linux" }}upx --best --lzma {{ .Path }}{{ else }}true{{ end }}'
   - id: sshosizator
     main: ./sshosizator
     binary: sshosizator
     goos:
       - linux
+      - darwin
     goarch:
       - amd64
       - arm64
+    ignore:
+      - goos: linux
+        goarch: arm64
+      - goos: darwin
+        goarch: amd64
     ldflags:
       - -s -w
       - -X main.version={{.Version}}
-      - -extldflags=-static
+      - '{{ if eq .Os "linux" }}-extldflags=-static{{ end }}'
     env:
       - CGO_ENABLED=0
     hooks:
       post:
-        - cmd: upx --best --lzma {{ .Path }}
+        - cmd: '{{ if eq .Os "linux" }}upx --best --lzma {{ .Path }}{{ else }}true{{ end }}'
   - id: eol-checker
     main: ./eol-checker
     binary: eol-checker
     goos:
       - linux
+      - darwin
     goarch:
       - amd64
       - arm64
+    ignore:
+      - goos: linux
+        goarch: arm64
+      - goos: darwin
+        goarch: amd64
     ldflags:
       - -s -w
       - -X main.version={{.Version}}
-      - -extldflags=-static
+      - '{{ if eq .Os "linux" }}-extldflags=-static{{ end }}'
     env:
       - CGO_ENABLED=0
     hooks:
       post:
-        - cmd: upx --best --lzma {{ .Path }}
+        - cmd: '{{ if eq .Os "linux" }}upx --best --lzma {{ .Path }}{{ else }}true{{ end }}'
   - id: jsaudit
     main: ./jsaudit
     binary: jsaudit
     goos:
       - linux
+      - darwin
     goarch:
       - amd64
       - arm64
+    ignore:
+      - goos: linux
+        goarch: arm64
+      - goos: darwin
+        goarch: amd64
     ldflags:
       - -s -w
       - -X main.version={{.Version}}
-      - -extldflags=-static
+      - '{{ if eq .Os "linux" }}-extldflags=-static{{ end }}'
     env:
       - CGO_ENABLED=0
     hooks:
       post:
-        - cmd: upx --best --lzma {{ .Path }}
+        - cmd: '{{ if eq .Os "linux" }}upx --best --lzma {{ .Path }}{{ else }}true{{ end }}'
   - id: dkimizator
     main: ./dkimizator
     binary: dkimizator
     goos:
       - linux
+      - darwin
     goarch:
       - amd64
       - arm64
+    ignore:
+      - goos: linux
+        goarch: arm64
+      - goos: darwin
+        goarch: amd64
     ldflags:
       - -s -w
-      - -extldflags=-static
+      - '{{ if eq .Os "linux" }}-extldflags=-static{{ end }}'
     env:
       - CGO_ENABLED=0
     hooks:
       post:
-        - cmd: upx --best --lzma {{ .Path }}
+        - cmd: '{{ if eq .Os "linux" }}upx --best --lzma {{ .Path }}{{ else }}true{{ end }}'
 release:
   github:
     owner: ducksify
