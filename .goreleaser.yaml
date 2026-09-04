@@ -153,6 +153,8 @@ builds:
     hooks:
       post:
         - cmd: upx --best --lzma {{ .Path }}
+archives:
+  - allow_different_binary_count: true
 release:
   github:
     owner: ducksify
