@@ -143,23 +143,16 @@ builds:
     binary: dkimizator
     goos:
       - linux
-      - darwin
     goarch:
       - amd64
-      - arm64
-    ignore:
-      - goos: linux
-        goarch: arm64
-      - goos: darwin
-        goarch: amd64
     ldflags:
       - -s -w
-      - '{{ if eq .Os "linux" }}-extldflags=-static{{ end }}'
+      - -extldflags=-static
     env:
       - CGO_ENABLED=0
     hooks:
       post:
-        - cmd: '{{ if eq .Os "linux" }}upx --best --lzma {{ .Path }}{{ else }}true{{ end }}'
+        - cmd: upx --best --lzma {{ .Path }}
 release:
   github:
     owner: ducksify
